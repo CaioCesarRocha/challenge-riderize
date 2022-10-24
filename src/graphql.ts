@@ -75,11 +75,13 @@ export type Query = {
 
 export type QueryUserCreatedRidesArgs = {
   id: Scalars['ID'];
+  req?: Request;
 };
 
 
 export type QueryUserEnrollRidesArgs = {
   id: Scalars['ID'];
+  req?: Request;
 };
 
 export type RegisterRideInput = {
