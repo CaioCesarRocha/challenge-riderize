@@ -1,0 +1,49 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Ride {
+  id                      String        @id @default(uuid())
+  name                    String
+  start_date              DateTime
+  start_date_registration DateTime
+  end_date_registration   DateTime
+  additional_information  String?       @db.VarChar(250)
+  start_place             String
+  participants_limit      Int?
+  creator                 User          @relation(fields: [creator_id], references: [id])
+  creator_id              String
+  user                    UsersOnRide[]
+
+  @@map("ride")
+}
+
+model User {
+  id           String        @id @default(uuid())
+  username     String        
+  email        String        @unique
+  password     String
+  created_ride Ride[]
+  ride         UsersOnRide[]
+
+  @@map("user")
+}
+
+model UsersOnRide {
+  user              User     @relation(fields: [user_id], references: [id])
+  user_id           String
+  ride              Ride     @relation(fields: [ride_id], references: [id])
+  ride_id           String
+  subscription_date DateTime
+
+  @@map("usersOnRide")
+  @@id([user_id, ride_id])
+}
