@@ -5,7 +5,6 @@ import { formatterDateTime } from "../utils/formatter";
 import { ensureAuthenticateUser } from "../utils/validations/decodedToken";
 import { getToken } from "../utils/validations/newToken";
 import { checkLimitParticipants } from "../utils/validations/checkLimitParticipants";
-import { LoginUser, RegisterRide, RegisterUser, Enroll } from "../utils/types";
 import { MutationResolvers, LoginUserInput, RegisterUserInput, RegisterRideInput, EnrollInput} from "src/graphql";
 
 

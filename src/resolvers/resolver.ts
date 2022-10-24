@@ -1,7 +1,6 @@
 import { prisma } from "../Prisma/prismaClient";
 import { Query } from "./query";
 import { Mutation } from "./mutation";
-import { SearchByID } from "src/utils/types";
 import { Resolvers } from "../graphql";
 
 export const resolvers: Resolvers = {

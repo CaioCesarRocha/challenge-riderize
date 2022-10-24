@@ -1,5 +1,4 @@
 import { verify } from "jsonwebtoken";
-import {Request} from 'express';
 
 interface IPayLoad{
     sub: string;

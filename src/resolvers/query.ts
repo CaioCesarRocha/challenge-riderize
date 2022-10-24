@@ -1,6 +1,5 @@
 import { ensureAuthenticateUser } from "../utils/validations/decodedToken";
 import { prisma } from "../Prisma/prismaClient";
-import { SearchByID } from "../utils/types";
 import { QueryResolvers } from "src/graphql";
 
 
