@@ -13,9 +13,7 @@
   <img align="center" alt="Caio-prisma" height="30" width="50" src="https://cdn.worldvectorlogo.com/logos/prisma-2.svg" /> 
   <img align="center" alt="Caio-jwt" height="30" width="40" src="https://thekenyandev.com/static/ba180df420dbaffd7405a0f65764feab/cover.png" />
   <img align="center" alt="Caio-postgres" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-plain-wordmark.svg" />
-  
-</div><br>
-  
+
 </div><br>
 
 ### Outras tecnologias
