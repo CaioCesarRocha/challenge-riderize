@@ -5,12 +5,14 @@ import { formatterDateTime } from "../utils/formatter";
 import { ensureAuthenticateUser } from "../utils/validations/decodedToken";
 import { getToken } from "../utils/validations/newToken";
 import { checkLimitParticipants } from "../utils/validations/checkLimitParticipants";
-import { MutationResolvers, LoginUserInput, RegisterUserInput, RegisterRideInput, EnrollInput} from "src/graphql";
+import { MutationResolvers, MutationLoginUserArgs, MutationRegisterUserArgs, 
+    MutationRegisterRideArgs, MutationEnrollArgs
+} from "src/graphql";
 
 
 export const Mutation: MutationResolvers= {
-    loginUser: async(args:LoginUserInput) =>{
-        const input = args;
+    loginUser: async(parent, args: MutationLoginUserArgs) =>{
+        const input = {...args.data};
         try{
             const user = await prisma.user.findFirst({
                 where: { email: input.email}
@@ -25,8 +27,8 @@ export const Mutation: MutationResolvers= {
         }
     },
 
-    registerUser: async(args: RegisterUserInput, ) =>{
-        const input = args      
+    registerUser: async(parent, args: MutationRegisterUserArgs, ) =>{
+        const input = args.data      
         const id = crypto.randomUUID(); 
         const hashPassword = await hash(input.password, 10)
         try{
@@ -45,9 +47,9 @@ export const Mutation: MutationResolvers= {
         }       
     },
 
-    registerRide: (args: RegisterRideInput, { req }) =>{
+    registerRide: (parent, args: MutationRegisterRideArgs, { req }) =>{
         ensureAuthenticateUser(req)
-        const input = args;
+        const input = args.data;
         const id = input.id || crypto.randomUUID(); 
         const startDate = formatterDateTime(input.start_date);
         const startDateRegistration = formatterDateTime(input.start_date_registration);
@@ -71,9 +73,9 @@ export const Mutation: MutationResolvers= {
         }      
     },
 
-    enroll: async (args: EnrollInput, { req }) =>{
+    enroll: async (parent, args: MutationEnrollArgs, { req }) =>{
         ensureAuthenticateUser(req)
-        const input = args;
+        const input = args.data;
         const subscriptionDate = formatterDateTime(input.subscription_date)
         const rideSelected = await prisma.ride.findFirst({where: { id: input.ride_id}})  
         const propsCheckLimitParticipants = {id: input.ride_id, limit: rideSelected.participants_limit}

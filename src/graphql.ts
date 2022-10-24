@@ -41,27 +41,22 @@ export type Mutation = {
   registerUser: AuthPayLoad;
 };
 
-
 export type MutationEnrollArgs = {
   data?: InputMaybe<EnrollInput>;
   req?: Request
 };
 
-
 export type MutationLoginUserArgs = {
-  data?: InputMaybe<LoginUserInput>;
+  data: InputMaybe<LoginUserInput>;
 };
-
 
 export type MutationRegisterRideArgs = {
   data?: InputMaybe<RegisterRideInput>;
   req?: Request
 };
 
-
 export type MutationRegisterUserArgs = {
   data?: InputMaybe<RegisterUserInput>;
-  req?: Request
 };
 
 export type Query = {

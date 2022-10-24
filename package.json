@@ -9,6 +9,7 @@
     "codegen": "graphql-codegen --config cogeden.yml"
   },
   "keywords": [
+    "ApolloServer",
     "Grapghql",
     "API",
     "Node.js",
